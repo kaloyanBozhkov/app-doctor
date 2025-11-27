@@ -6,7 +6,7 @@ import { env } from "@/helpers/env";
 const PROJECTS: Record<string, [string, Record<string, string>]> = {
   "projects-alert": [
     "https://project-alert-flame.vercel.app/api/health",
-    { "X-API-KEY": env.TG_BOT_KEY },
+    { "x-api-key": env.TG_BOT_KEY },
   ],
   linkbase: ["https://linkbase.kaloyanbozhkov.com/health", {}],
   "linkbase-db": ["https://linkbase.kaloyanbozhkov.com/healthz", {}],
@@ -31,12 +31,12 @@ async function checkProjectHealth(
       const msg = {
         message: `${projectKey} is not healthy`,
         timestamp,
+        response: await response.text(),
       };
       await sendErrorLog(projectKey, msg);
       return {
         success: false,
-        message: msg.message,
-        timestamp,
+        ...msg,
       };
     }
     console.log(projectKey, "is healthy");
