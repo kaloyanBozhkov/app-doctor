@@ -12,7 +12,7 @@ const PROJECTS: Record<string, [string, Record<string, string>]> = {
   "linkbase-db": ["https://linkbase.kaloyanbozhkov.com/healthz", {}],
   naslqpo: ["https://naslqpo.com/api/health", {}],
   "naslqpo-db": ["https://naslqpo.com/api/health/db", {}],
-  "znp": ["https://znp.show/api/health/db", {}],
+  znp: ["https://znp.show/api/health/db", {}],
   "znp-db": ["https://znp.show/api/health/db", {}],
 };
 
