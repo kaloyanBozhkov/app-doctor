@@ -1,10 +1,10 @@
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import { env } from '@/helpers/env';
 import { apiKeyMiddleware } from '@/middleware/api-key';
 import { errorHandler } from '@/middleware/error-handler';
 import router from '@/router';
+import { env } from './helpers/env';
 
 const app = express();
 
@@ -56,6 +56,10 @@ app.use((req: Request, res: Response) => {
 
 // Error handler (must be last)
 app.use(errorHandler);
+
+app.listen(env.PORT, () => {
+  console.log(`Server running on port ${env.PORT} in ${env.NODE_ENV} mode`);
+});
 
 export default app;
 
