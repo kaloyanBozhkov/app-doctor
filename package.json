@@ -4,7 +4,7 @@
   "description": "Backend API with Express",
   "main": "dist/app.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon src/app.ts",
     "build": "tsc && tsc-alias",
     "start": "node dist/app.js",
     "lint": "eslint . --ext .ts",

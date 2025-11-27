@@ -16,7 +16,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 // CORS
 app.use((0, cors_1.default)({
-    origin: process.env.CORS_ORIGIN || '*',
+    origin: process.env.CORS_ORIGIN || "*",
     credentials: true,
 }));
 // Logging middleware
@@ -26,25 +26,24 @@ app.use((req, res, next) => {
 });
 // API key middleware - applies to all routes except health check
 app.use((req, res, next) => {
-    if (req.path === '/api/health') {
+    if (req.path === "/api/health") {
         return next();
     }
     (0, api_key_1.apiKeyMiddleware)(req, res, next);
 });
 // Routes
-app.use('/api', router_1.default);
+app.use("/api", router_1.default);
 // Root route
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.json({
-        status: 'ok',
-        message: 'App Doctor API',
-        endpoints: ['/api/health'],
+        status: "ok",
+        message: "App Doctor API",
     });
 });
 // 404 handler
 app.use((req, res) => {
     res.status(404).json({
-        error: 'Not Found',
+        error: "Not Found",
         message: `Route ${req.method} ${req.url} not found`,
     });
 });

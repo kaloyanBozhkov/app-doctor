@@ -10,7 +10,7 @@ const PROJECTS = {
 };
 const router = (0, express_1.Router)();
 Object.entries(PROJECTS).forEach(([key, value]) => {
-    router.get(key, (0, async_handler_1.asyncHandler)(async (req, res) => {
+    router.get("/" + key, (0, async_handler_1.asyncHandler)(async (req, res) => {
         const response = await fetch(value);
         if (!response.ok) {
             const msg = {
@@ -29,5 +29,11 @@ Object.entries(PROJECTS).forEach(([key, value]) => {
         });
     }));
 });
+router.get("/ok", (0, async_handler_1.asyncHandler)(async (req, res) => {
+    res.json({
+        status: "ok",
+        timestamp: new Date().toISOString(),
+    });
+}));
 exports.default = router;
 //# sourceMappingURL=health.js.map

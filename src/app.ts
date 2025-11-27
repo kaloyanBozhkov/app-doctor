@@ -1,10 +1,10 @@
-import 'dotenv/config';
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import { apiKeyMiddleware } from '@/middleware/api-key';
-import { errorHandler } from '@/middleware/error-handler';
-import router from '@/router';
-import { env } from './helpers/env';
+import "dotenv/config";
+import express, { Request, Response } from "express";
+import cors from "cors";
+import { apiKeyMiddleware } from "@/middleware/api-key";
+import { errorHandler } from "@/middleware/error-handler";
+import router from "@/router";
+import { env } from "./helpers/env";
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // CORS
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || '*',
+    origin: process.env.CORS_ORIGIN || "*",
     credentials: true,
   })
 );
@@ -28,28 +28,27 @@ app.use((req, res, next) => {
 
 // API key middleware - applies to all routes except health check
 app.use((req, res, next) => {
-  if (req.path === '/api/health') {
+  if (req.path === "/api/health") {
     return next();
   }
   apiKeyMiddleware(req, res, next);
 });
 
 // Routes
-app.use('/api', router);
+app.use("/api", router);
 
 // Root route
-app.get('/', (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
   res.json({
-    status: 'ok',
-    message: 'App Doctor API',
-    endpoints: ['/api/health'],
+    status: "ok",
+    message: "App Doctor API",
   });
 });
 
 // 404 handler
 app.use((req: Request, res: Response) => {
   res.status(404).json({
-    error: 'Not Found',
+    error: "Not Found",
     message: `Route ${req.method} ${req.url} not found`,
   });
 });
@@ -62,4 +61,3 @@ app.listen(env.PORT, () => {
 });
 
 export default app;
-

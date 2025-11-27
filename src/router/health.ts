@@ -12,7 +12,7 @@ const router = Router();
 
 Object.entries(PROJECTS).forEach(([key, value]) => {
   router.get(
-    key,
+    "/" + key,
     asyncHandler(async (req, res) => {
       const response = await fetch(value);
       if (!response.ok) {
@@ -33,5 +33,15 @@ Object.entries(PROJECTS).forEach(([key, value]) => {
     })
   );
 });
+
+router.get(
+  "/ok",
+  asyncHandler(async (req, res) => {
+    res.json({
+      status: "ok",
+      timestamp: new Date().toISOString(),
+    });
+  })
+);
 
 export default router;

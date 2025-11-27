@@ -7,7 +7,7 @@ export const apiKeyMiddleware = (req: Request, res: Response, next: NextFunction
   if (!apiKey || apiKey !== env.X_API_KEY) {
     res.status(401).json({
       error: 'Unauthorized',
-      message: 'Invalid or missing X-API-KEY header',
+      message: 'Invalid/missing X-API-KEY header',
     });
     return;
   }
