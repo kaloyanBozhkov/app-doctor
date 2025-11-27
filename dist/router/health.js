@@ -10,7 +10,7 @@ const PROJECTS = {
         { "x-api-key": env_1.env.TG_BOT_KEY },
     ],
     linkbase: ["https://linkbase.kaloyanbozhkov.com/health", {}],
-    "linkbase-db": ["https://linkbase.kaloyanbozhkov.com/healthz", {}],
+    "linkbase-db": ["https://linkbase.kaloyanbozhkov.com/health-db", {}],
     naslqpo: ["https://naslqpo.com/api/health", {}],
     "naslqpo-db": ["https://naslqpo.com/api/health/db", {}],
     znp: ["https://znp.show/api/health/db", {}],
