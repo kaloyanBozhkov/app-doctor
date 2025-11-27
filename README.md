@@ -46,5 +46,12 @@ All routes (except `/api/health`) require `X-API-KEY` header.
 
 ## Deployment
 
-Configured for Vercel. Set environment variables in Vercel dashboard.
+Configured for Vercel. 
+
+**Required Environment Variables in Vercel:**
+- `X_API_KEY` - Your secret API key
+- `NODE_ENV` - Set to `production`
+- `PORT` - Set to `3000` (optional)
+
+After deploying, push changes and Vercel will automatically redeploy.
 
