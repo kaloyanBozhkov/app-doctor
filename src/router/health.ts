@@ -10,12 +10,17 @@ const PROJECTS: Record<string, [string, Record<string, string>]> = {
   ],
   linkbase: ["https://linkbase.kaloyanbozhkov.com/health", {}],
   "linkbase-db": ["https://linkbase.kaloyanbozhkov.com/healthz", {}],
+  naslqpo: ["https://naslqpo.com/api/health", {}],
+  "naslqpo-db": ["https://naslqpo.com/api/health/db", {}],
+  "znp": ["https://znp.show/api/health/db", {}],
+  "znp-db": ["https://znp.show/api/health/db", {}],
 };
 
 type HealthCheckResult = {
   success: boolean;
   message?: string;
   timestamp: string;
+  response?: string;
 };
 
 // Core health check logic - decoupled from express req/res
