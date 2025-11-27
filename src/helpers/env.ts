@@ -6,6 +6,7 @@ const envSchema = z.object({
     .default("development"),
   PORT: z.string().transform(Number).default("3000"),
   X_API_KEY: z.string().min(1),
+  TG_BOT_KEY: z.string().min(1),
 });
 
 export const env = envSchema.parse(process.env);
