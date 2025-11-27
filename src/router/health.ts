@@ -24,7 +24,7 @@ router.get(
 
 
 router.get(
-  "/linkbase",
+  "/linkbase-db",
   asyncHandler(async (req, res) => {
     const linkbase = await fetch("https://linkbase.kaloyanbozhkov.com/healthz");
     if (!linkbase.ok) {
