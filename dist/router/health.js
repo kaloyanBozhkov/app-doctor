@@ -7,10 +7,14 @@ const env_1 = require("../helpers/env");
 const PROJECTS = {
     "projects-alert": [
         "https://project-alert-flame.vercel.app/api/health",
-        { "X-API-KEY": env_1.env.TG_BOT_KEY },
+        { "x-api-key": env_1.env.TG_BOT_KEY },
     ],
     linkbase: ["https://linkbase.kaloyanbozhkov.com/health", {}],
     "linkbase-db": ["https://linkbase.kaloyanbozhkov.com/healthz", {}],
+    naslqpo: ["https://naslqpo.com/api/health", {}],
+    "naslqpo-db": ["https://naslqpo.com/api/health/db", {}],
+    znp: ["https://znp.show/api/health/db", {}],
+    "znp-db": ["https://znp.show/api/health/db", {}],
 };
 // Core health check logic - decoupled from express req/res
 async function checkProjectHealth(projectKey, url, headers) {
@@ -21,12 +25,12 @@ async function checkProjectHealth(projectKey, url, headers) {
             const msg = {
                 message: `${projectKey} is not healthy`,
                 timestamp,
+                response: await response.text(),
             };
             await (0, sendErrorLog_1.sendErrorLog)(projectKey, msg);
             return {
                 success: false,
-                message: msg.message,
-                timestamp,
+                ...msg,
             };
         }
         console.log(projectKey, "is healthy");
