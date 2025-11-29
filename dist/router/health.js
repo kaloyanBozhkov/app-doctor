@@ -4,6 +4,7 @@ const express_1 = require("express");
 const async_handler_1 = require("../helpers/async-handler");
 const sendErrorLog_1 = require("../helpers/sendErrorLog");
 const env_1 = require("../helpers/env");
+const retry_1 = require("../helpers/retry");
 const PROJECTS = {
     "projects-alert": [
         "https://project-alert-flame.vercel.app/api/health",
@@ -81,7 +82,7 @@ Object.entries(PROJECTS).forEach(([key, args]) => {
 router.get("/check-all", (0, async_handler_1.asyncHandler)(async (req, res) => {
     const results = {};
     for (const [key, checkFn] of Object.entries(handlersHash)) {
-        results[key] = await checkFn();
+        results[key] = await (0, retry_1.retry)(checkFn, 2, true);
     }
     const allHealthy = Object.values(results).every((r) => r.success);
     res.status(allHealthy ? 200 : 500).json({

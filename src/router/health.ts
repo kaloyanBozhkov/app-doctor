@@ -2,6 +2,7 @@ import { Router } from "express";
 import { asyncHandler } from "@/helpers/async-handler";
 import { sendErrorLog } from "@/helpers/sendErrorLog";
 import { env } from "@/helpers/env";
+import { retry } from "@/helpers/retry";
 
 const PROJECTS: Record<string, [string, Record<string, string>]> = {
   "projects-alert": [
@@ -100,7 +101,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const results: Record<string, HealthCheckResult> = {};
     for (const [key, checkFn] of Object.entries(handlersHash)) {
-      results[key] = await checkFn();
+      results[key] = await retry(checkFn, 2, true);
     }
 
     const allHealthy = Object.values(results).every((r) => r.success);
