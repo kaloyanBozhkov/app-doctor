@@ -15,8 +15,8 @@ const PROJECTS: Record<string, [string, Record<string, string>]> = {
   "naslqpo-db": ["https://naslqpo.com/api/health/db", {}],
   znp: ["https://znp.show/api/health/db", {}],
   "znp-db": ["https://znp.show/api/health/db", {}],
-  "svetla-estetica": ["https://svetla-estetica.com/api/health", {}],
-  "svetla-estetica-db": ["https://svetla-estetica.com/api/health/db", {}],
+  "svetla-estetica": ["https://svetlaestetica.com/api/health", {}],
+  "svetla-estetica-db": ["https://svetlaestetica.com/api/health/db", {}],
 };
 
 type HealthCheckResult = {
